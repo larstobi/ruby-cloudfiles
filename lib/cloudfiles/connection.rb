@@ -259,6 +259,10 @@ module CloudFiles
 
     # This method actually makes the HTTP calls out to the server
     def cfreq(method,server,path,port,scheme,headers = {},data = nil,attempts = 0,&block) # :nodoc:
+      if server == nil
+        return ""
+      end
+
       start = Time.now
       headers['Transfer-Encoding'] = "chunked" if data.is_a?(IO)
       hdrhash = headerprep(headers)
